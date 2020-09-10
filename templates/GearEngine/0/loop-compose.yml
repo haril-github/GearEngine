@@ -1,0 +1,9 @@
+.catalog:
+  name: GearEngine
+  version: latest
+  uuid: GearEngine
+  questions:
+  - variable: HTTP_PORT
+    description: 'GearEngine'
+    label: 'Port:'
+    required: true
