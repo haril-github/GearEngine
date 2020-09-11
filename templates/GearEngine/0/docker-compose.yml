@@ -2,7 +2,7 @@ version: '3.7'
 services:
     reverse-proxy:
         container_name: traefik
-        image: 'klingelnberg.azurecr.io/gearengine/traefik:${Traefik_Version}'
+        image: 'klingelnberg.azurecr.io/gearengine/traefik:2.2.0'
         restart: always
         networks:
             - internal-network
@@ -20,7 +20,7 @@ services:
             options: { max-size: 20m, max-file: '5' }
     mongo-database:
         container_name: mongo-ge
-        image: 'klingelnberg.azurecr.io/gearengine/mongo:${Mongo_Service_Version}'
+        image: 'klingelnberg.azurecr.io/gearengine/mongo:4.0'
         restart: always
         ports:
             - '30041:27017'
@@ -33,7 +33,7 @@ services:
             options: { max-size: 20m, max-file: '5' }
     messaging-service:
         container_name: active_mq-ge
-        image: 'klingelnberg.azurecr.io/gearengine/activemq:${Active_MQ_Service_Version}'
+        image: 'klingelnberg.azurecr.io/gearengine/activemq:5.15.9'
         restart: always
         ports:
             - '30050:8161'
@@ -45,7 +45,7 @@ services:
             options: { max-size: 20m, max-file: '5' }
     production-machine-service:
         container_name: productionmachines.service-ge
-        image: 'klingelnberg.azurecr.io/gearengine/productionmachines.service:${Production_Machines_Service_Version}'
+        image: 'klingelnberg.azurecr.io/gearengine/productionmachines.service:2.1.2'
         restart: always
         ports:
             - '30091:80'
@@ -65,7 +65,7 @@ services:
             - mongo-database
     production-machine-app:
         container_name: productionmachines.app-ge
-        image: 'klingelnberg.azurecr.io/gearengine/productionmachines.app:${Production_Machines_App_Version}'
+        image: 'klingelnberg.azurecr.io/gearengine/productionmachines.app:2.1.2'
         restart: always
         ports:
             - '30092:80'
@@ -84,7 +84,7 @@ services:
             - production-machine-service
     correction-loop-service:
         container_name: correctionloop-ge
-        image: 'klingelnberg.azurecr.io/gearengine/clps.correctionloop:${Correction_Loop_Service_Version}'
+        image: 'klingelnberg.azurecr.io/gearengine/clps.correctionloop:1.33.0'
         restart: always
         ports:
             - '31201:80'
@@ -138,7 +138,7 @@ services:
             - processdesign-reporting-service
     gear-corrector:
         container_name: gearcorrector-ge
-        image: 'klingelnberg.azurecr.io/gearengine/gearcorrector:${Gear_Corrector_App_Version}'
+        image: 'klingelnberg.azurecr.io/gearengine/gearcorrector:1.17.4'
         restart: always
         ports:
             - '31202:80'
@@ -154,14 +154,14 @@ services:
             ServerConfiguration__CorrectionLoopServiceUrl: 'http://correctionloop-ge:80'
             ServerConfiguration__ProductionMachineServiceUrl: 'http://productionmachines.service-ge:80'
             LanguageConfiguration__Default: en-US
-            FeatureManagement__Beta: '${Gear_Corrector_Enable_Beta_Features}'
+            FeatureManagement__Beta: 'false'
             BaseUrlConfiguration__BaseUrl: '/web/gear-corrector'
         depends_on:
             - correction-loop-service
             - production-machine-service
     clps-app:
         container_name: clpsapp-ge
-        image: 'klingelnberg.azurecr.io/gearengine/clpsapp:${CLPS_App_Version}'
+        image: 'klingelnberg.azurecr.io/gearengine/clpsapp:2.8.4'
         restart: always
         ports:
             - '31203:80'
@@ -204,7 +204,7 @@ services:
             - processdesign-reporting-service
     processdesign-reporting-service:
         container_name: processdesignreporting.service-ge
-        image: 'klingelnberg.azurecr.io/gearengine/processdesignreporting.service:${ProcessDesignReporting_Service_Version}'
+        image: 'klingelnberg.azurecr.io/gearengine/processdesignreporting.service:0.9.4'
         restart: always
         ports:
             - '31204:80'
