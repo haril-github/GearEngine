@@ -1,0 +1,15 @@
+version: "2"
+
+services:
+  mongodb:
+    image: mongo:3.7
+    ports:
+      - "${MONGODB_PORT}:27017"
+    volumes:
+      - mongodb-vol:/data/db
+    network_mode: bridge
+    restart: "${RESTART}"
+
+volumes:
+  mongodb-vol:
+    driver: local
