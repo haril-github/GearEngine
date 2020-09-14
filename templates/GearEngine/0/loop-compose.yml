@@ -3,8 +3,15 @@
   version: latest
   uuid: GearEngine-0
   questions:
-  - variable: GE_PORT
+  - variable: GearEngine_PORT
     description: 'GearEngine'
     label: 'Port:'
     required: true
-    type:string
+    type: int
+    - variable: RESTART
+    description: 'Application restart option: no, always, on-failure'
+    label: 'Restart:'
+    required: true
+    default: "always"
+    type: string
+
