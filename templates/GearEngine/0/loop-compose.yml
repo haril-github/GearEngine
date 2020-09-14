@@ -1,13 +1,8 @@
 .catalog:
   name: GearEngine
   version: latest
-  uuid: GearEngine-0
+  uuid: gearEngine-0
   questions:
-  
-    description: 'GearEngine'
-    label: 'Port:'
-    required: false
-    type: int
     - variable: RESTART
     description: 'Application restart option: no, always, on-failure'
     label: 'Restart:'
