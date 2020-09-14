@@ -3,7 +3,7 @@
   version: latest
   uuid: GearEngine-0
   questions:
-  - variable: GearEngine_PORT
+  
     description: 'GearEngine'
     label: 'Port:'
     required: true
