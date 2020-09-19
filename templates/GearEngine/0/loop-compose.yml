@@ -3,10 +3,10 @@
   version: latest
   uuid: gearengine-0
   questions:
-    - variable: RESTART
+    - variable: Production
     description: 'Application restart option: no, always, on-failure'
-    label: 'Restart:'
+    label: 'Port:'
     required: true
-    default: "always"
-    type: string
+    default: "27017"
+    type: int
 
