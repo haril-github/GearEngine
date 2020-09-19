@@ -6,7 +6,7 @@ services:
         image: 'klingelnberg.azurecr.io/gearengine/productionmachines.app:2.1.2'
         restart: always
         ports:
-            - '30092:80'
+            - "${Production}:30092:80"
         labels:
             - traefik.http.routers.production-machine-app.rule=PathPrefix(`/web/machines`)
         networks:
