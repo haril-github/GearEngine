@@ -6,11 +6,12 @@ services:
         image: 'klingelnberg.azurecr.io/gearengine/productionmachines.app:2.1.2'
         restart: always
         ports:
-            - "${Production}:30092:80"
+            - "${Production}:30092"
         labels:
             - traefik.http.routers.production-machine-app.rule=PathPrefix(`/web/machines`)
         networks:
             - internal-network
+        restart: "${RESTART}"
         logging:
             driver: json-file
             options: { max-size: 20m, max-file: '5' }
